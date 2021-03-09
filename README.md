@@ -2,26 +2,35 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.3.
 
-## Development server
+# versions
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+node: v12.16.3 npm 6.14.4
 
-## Code scaffolding
+## Description
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This is a basic recipe search app which also allows you to make a shopping list with ingridients
 
-## Build
+## Instalation
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```
+git clone git@github.com:rinaam/recipe-app.git
+cd repo
+npm ci
+npm start
+```
 
-## Running unit tests
+# How to use
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- ### Home page
+- Press on the red button and speak fluently, for best results just say one word because api is not very good :D
+- you must press again to stop the recording
+- and ofcourse allow the recording in chrome (for best experience :D )
+- I am using IBM watson speech to text api [Link](https://cloud.ibm.com/apidocs/speech-to-text)
+- don't abuse this api since I am using my personal license, but it is free
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- ### Search results
+- type something in the search bar and press enter. It will use recipe api to give you a list of recipes
+- each recipe can be shared on facebook
+- you can also show nutritional facts
+- you can also expand the ingridients and add them to a shopping list
+- shopping list is persistant between refresh, we are storing all data in local storage
