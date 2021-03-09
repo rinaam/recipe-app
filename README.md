@@ -14,7 +14,7 @@ This is a basic recipe search app which also allows you to make a shopping list 
 
 ```
 git clone git@github.com:rinaam/recipe-app.git
-cd repo
+cd recipe-app
 npm ci
 npm start
 ```
