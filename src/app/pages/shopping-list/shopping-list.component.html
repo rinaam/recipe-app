@@ -1,0 +1,23 @@
+<div class="wrapper">
+  <div *ngIf="isEmpty(shoppingList$ | async); else elseBlock" class="message">
+    <p>
+      Shopping list is empty <br />
+      Search recipes and select ingridients for shopping list
+    </p>
+  </div>
+  <ng-template #elseBlock>
+    <div class="list-content">
+      <ul>
+        <li *ngFor="let item of shoppingList$ | async | keyvalue">
+          <span>{{ item.key }}</span>
+          <div class="btn-wrapper">
+            <app-button
+              label="Delete"
+              (onClick)="deleteItem(item.key)"
+            ></app-button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </ng-template>
+</div>

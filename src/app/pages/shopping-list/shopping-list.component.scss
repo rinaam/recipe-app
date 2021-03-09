@@ -1,0 +1,28 @@
+.wrapper {
+  height: calc(100vh - 100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .message {
+    color: #808080;
+    margin: 4px;
+  }
+  .list-content {
+    height: 100%;
+    width: 100%;
+    ul {
+      margin: 8px;
+      li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        max-width: 600px;
+        .btn-wrapper {
+          width: 80px;
+          margin-left: 4px;
+        }
+      }
+    }
+  }
+}

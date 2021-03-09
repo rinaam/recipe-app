@@ -1,0 +1,61 @@
+<div class="card-wrapper">
+  <div class="card-header">
+    <div class="header-content">
+      <div class="title-wrapper">
+        <p class="title">{{ title }}</p>
+        <div class="info">
+          <p>Servings:</p>
+          <p class="yield">{{ yield }}</p>
+          <div (click)="openModal()" class="modal-btn">Full Nutrition</div>
+        </div>
+      </div>
+    </div>
+    <div class="image-wrapper">
+      <img src="{{ imageUrl }}" />
+    </div>
+  </div>
+  <div class="card-content">
+    <div class="btn-container">
+      <div class="btn-wrapper">
+        <app-button
+          [label]="showIngridients ? 'Hide Ingredients' : 'Show Ingredients'"
+          (onClick)="getIngridients()"
+        ></app-button>
+      </div>
+      <div class="btn-wrapper">
+        <app-button
+          label="View Recipe"
+          (onClick)="navigateToRecipe()"
+        ></app-button>
+      </div>
+      <iframe
+        [src]="shareUrl | safe"
+        width="96"
+        height="20"
+        style="border: none; overflow: hidden"
+        scrolling="no"
+        frameborder="0"
+        allowfullscreen="true"
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+      ></iframe>
+    </div>
+    <div *ngIf="showIngridients">
+      <p class="note">Select ingridients to create shopping list</p>
+      <p class="title">Ingredients</p>
+      <ul>
+        <li *ngFor="let item of ingridients">
+          <app-checkbox
+            label="{{ item.text }}"
+            (change)="onChange(item.text, $event)"
+          ></app-checkbox>
+        </li>
+      </ul>
+      <div class="btn-wrapper" *ngIf="showButton$ | async">
+        <app-floating-button
+          label="Add To Shopping List"
+          (onClick)="navigateToShoppingList()"
+        ></app-floating-button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: calc(100vh - 100px);
+  .btn-wrapper {
+    width: 150px;
+    margin: 8px;
+  }
+}

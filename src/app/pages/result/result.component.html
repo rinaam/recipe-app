@@ -1,0 +1,43 @@
+<div class="page-wrapper">
+  <div class="container">
+    <app-card
+      *ngFor="let item of (recipes$ | async)?.hits"
+      title="{{ item.recipe.label }}"
+      imageUrl="{{ item.recipe.image }}"
+      [ingridients]="item.recipe.ingredients"
+      yield="{{ item.recipe.yield }}"
+      url="{{ item.recipe.url }}"
+      (onModalClick)="openModal(item.recipe)"
+      shareUrl="{{ getRecipeUrl(item.recipe.url) }}"
+    ></app-card>
+    <app-modal
+      (onClose)="closeModal()"
+      [ngStyle]="isOpen ? { display: 'block' } : { display: 'none' }"
+    >
+      <div class="dialog-wrapper">
+        <div>
+          <p class="title">{{ (selectedRecipe$ | async)?.recipe.label }}</p>
+          <p>Servings {{ (selectedRecipe$ | async)?.recipe.yield }}</p>
+          <p>
+            Calories
+            {{ roundUpNumber((selectedRecipe$ | async)?.recipe.calories) }}
+          </p>
+        </div>
+        <ul>
+          <li
+            *ngFor="
+              let item of (selectedRecipe$ | async)?.recipe.totalNutrients
+                | keyvalue
+            "
+          >
+            <span>{{ item.value.label }}</span>
+            <div>
+              <span>{{ roundUpNumber(item.value.quantity) }}</span>
+              <span>{{ item.value.unit }}</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </app-modal>
+  </div>
+</div>

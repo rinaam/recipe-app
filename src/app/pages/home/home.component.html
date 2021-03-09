@@ -1,0 +1,11 @@
+<div class="container">
+  <p *ngIf="isRecording; else elseBlock">Recording...</p>
+  <ng-template #elseBlock>Press start for voice search</ng-template>
+  <div class="btn-wrapper">
+    <app-button
+      [label]="isRecording ? 'Stop' : 'Start'"
+      variant="secondary"
+      (onClick)="handleClick()"
+    ></app-button>
+  </div>
+</div>
