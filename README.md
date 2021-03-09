@@ -17,6 +17,7 @@ git clone git@github.com:rinaam/recipe-app.git
 cd recipe-app
 npm ci
 npm start
+go to http://localhost:4200
 ```
 
 # How to use
