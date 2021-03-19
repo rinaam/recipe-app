@@ -1,40 +1,18 @@
-import { MediaService } from './../../services/media.service';
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
+import { mainCategories } from '../../utils/constants';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnDestroy {
+export class HomeComponent {
   isRecording: boolean = false;
+  mainCategories = mainCategories;
 
-  subscriptions$: Subscription[] = [];
+  constructor(private router: Router) {}
 
-  constructor(private mediaService: MediaService, private router: Router) {
-    const sub = this.mediaService.sound$.subscribe((stream) => {
-      this.mediaService.recognize(stream).subscribe((response) => {
-        this.router.navigate([
-          'search',
-          response.results[0]?.alternatives[0]?.transcript || 'chicken',
-        ]);
-      });
-    });
-    this.subscriptions$.push(sub);
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions$.forEach((sub) => sub.unsubscribe());
-  }
-
-  handleClick(): void {
-    this.isRecording = !this.isRecording;
-    if (this.isRecording) {
-      this.mediaService.startRecording();
-    } else {
-      this.mediaService.stopRecording();
-    }
+  handleClick(category: string): void {
+    this.router.navigate(['search', category]);
   }
 }

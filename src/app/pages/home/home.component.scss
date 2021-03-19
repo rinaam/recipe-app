@@ -1,11 +1,68 @@
+@import "../../breakpoints.scss";
+
 .container {
   display: flex;
-  align-items: center;
   justify-content: center;
   flex-direction: column;
   height: calc(100vh - 100px);
-  .btn-wrapper {
-    width: 150px;
-    margin: 8px;
+  background-image: url("~src/assets/images/banner_1.jpg");
+  background-size: cover;
+  position: relative;
+  .title {
+    font: {
+      size: 48px;
+      weight: 800;
+    }
+    margin-bottom: 24px;
+    color: #ffff;
+  }
+  .subtitle {
+    font: {
+      size: 18px;
+      weight: 200;
+    }
+    margin-bottom: 12px;
+    color: #ffff;
+    @include breakpoint(mediumDevices) {
+      font: {
+        size: 24px;
+        weight: 400;
+      }
+    }
+  }
+  .categories-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: absolute;
+    top: calc(100% - 108px);
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 100%;
+    box-sizing: border-box;
+
+    .content {
+      background-color: #ff0000;
+      margin: 8px;
+      box-shadow: 0px 6px 15px 0px rgb(0 0 0 / 10%);
+      cursor: pointer;
+      transition: transform 0.3s;
+      img {
+        height: 110px;
+        width: 110px;
+        @include breakpoint(mediumDevices) {
+          height: 160px;
+          width: 160px;
+        }
+      }
+      .category-title {
+        color: #ffff;
+        font-size: 18px;
+        padding: 15px;
+      }
+      &:hover {
+        transform: translate(0, -10px);
+      }
+    }
   }
 }

@@ -4,6 +4,13 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  .message {
+    color: #808080;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 100px);
+  }
   .dialog-wrapper {
     padding: 8px;
     box-sizing: border-box;

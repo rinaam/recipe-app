@@ -1,0 +1,53 @@
+<app-container>
+  <div class="container">
+    <div *ngIf="isEmpty(favorites$ | async); else elseBlock" class="message">
+      <p>
+        Favorite list is empty <br />
+        Search recipes and select your favorites
+      </p>
+    </div>
+    <ng-template #elseBlock>
+      <app-card
+        *ngFor="let recipe of favorites$ | async"
+        title="{{ recipe.label }}"
+        imageUrl="{{ recipe.image }}"
+        [ingridients]="recipe.ingredients"
+        yield="{{ recipe.yield }}"
+        url="{{ recipe.url }}"
+        (onModalClick)="openModal(recipe)"
+        shareUrl="{{ getRecipeUrl(recipe.url) }}"
+        (onFavoriteClick)="handleFavorites(recipe)"
+        [isFavorite]="true"
+        [recipe]="recipe"
+      ></app-card>
+      <app-modal
+        (onClose)="closeModal()"
+        [ngStyle]="isOpen ? { display: 'block' } : { display: 'none' }"
+      >
+        <div class="dialog-wrapper">
+          <div>
+            <p class="title">{{ (selectedRecipe$ | async)?.label }}</p>
+            <p>Servings {{ (selectedRecipe$ | async)?.yield }}</p>
+            <p>
+              Calories
+              {{ roundUpNumber((selectedRecipe$ | async)?.calories) }}
+            </p>
+          </div>
+          <ul>
+            <li
+              *ngFor="
+                let item of (selectedRecipe$ | async)?.totalNutrients | keyvalue
+              "
+            >
+              <span>{{ item.value.label }}</span>
+              <div>
+                <span>{{ roundUpNumber(item.value.quantity) }}</span>
+                <span>{{ item.value.unit }}</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </app-modal>
+    </ng-template>
+  </div>
+</app-container>

@@ -1,4 +1,4 @@
-<div class="wrapper">
+<app-container>
   <div *ngIf="isEmpty(shoppingList$ | async); else elseBlock" class="message">
     <p>
       Shopping list is empty <br />
@@ -7,17 +7,24 @@
   </div>
   <ng-template #elseBlock>
     <div class="list-content">
-      <ul>
-        <li *ngFor="let item of shoppingList$ | async | keyvalue">
-          <span>{{ item.key }}</span>
+      <ul *ngFor="let recipe of uniqueRecipes">
+        <p (click)="navigateToRecipe(recipe.url)" class="recipe-title">
+          {{ recipe.label }}
+        </p>
+        <li
+          *ngFor="
+            let item of getArrRecipeTitle(recipe.label, shoppingList$ | async)
+          "
+        >
+          <span>{{ item.ingredient }}</span>
           <div class="btn-wrapper">
             <app-button
               label="Delete"
-              (onClick)="deleteItem(item.key)"
+              (onClick)="deleteItem(item.ingredient, recipe)"
             ></app-button>
           </div>
         </li>
       </ul>
     </div>
   </ng-template>
-</div>
+</app-container>

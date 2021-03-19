@@ -21,5 +21,9 @@ export class AppComponent {
       to: 'shopping-list',
       title: 'Shopping List',
     },
+    {
+      to: 'favorites',
+      title: 'Favorites',
+    },
   ];
 }

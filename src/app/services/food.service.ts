@@ -133,6 +133,7 @@ export type recipeT = {
   totalNutrients: totalNutrientT;
   totalDaily: totalDailyT;
   digest: digestT[];
+  isFavorite?: boolean;
 };
 
 @Injectable({

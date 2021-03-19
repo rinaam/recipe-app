@@ -7,4 +7,15 @@
     aria-describedby="search-text"
     placeholder="Enter text to search"
   />
+  <div class="icon-wrapper" (click)="onClickButton()">
+    <fa-icon [icon]="faMicrophone" class="icon"></fa-icon>
+  </div>
+
+  <div class="btn-wrapper">
+    <app-button
+      label="Search"
+      variant="secondary"
+      (onClick)="handleClick()"
+    ></app-button>
+  </div>
 </div>

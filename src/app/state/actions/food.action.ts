@@ -1,3 +1,4 @@
+import { recipeT } from './../../services/food.service';
 import { createAction, props } from '@ngrx/store';
 import { recipeSearchT } from '../../services/food.service';
 
@@ -15,10 +16,19 @@ export const getRecipeSearchActionError = createAction(
 
 export const updateShoppingList = createAction(
   '[Shoping List] Get Shopping List',
-  props<{ value: string; checked: boolean }>()
+  props<{
+    checked: boolean;
+    recipe: recipeT;
+    ingredient: string;
+  }>()
 );
 
 export const deleteMarkedItem = createAction(
   '[Deletion] Delete Marked Item',
-  props<{ item: string }>()
+  props<{ ingridient: string; recipe: recipeT }>()
+);
+
+export const updateFavoritesList = createAction(
+  '[Favorites List] Get Favorites List',
+  props<{ recipe: recipeT }>()
 );

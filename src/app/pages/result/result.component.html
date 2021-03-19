@@ -1,4 +1,4 @@
-<div class="page-wrapper">
+<app-container>
   <div class="container">
     <app-card
       *ngFor="let item of (recipes$ | async)?.hits"
@@ -9,7 +9,18 @@
       url="{{ item.recipe.url }}"
       (onModalClick)="openModal(item.recipe)"
       shareUrl="{{ getRecipeUrl(item.recipe.url) }}"
+      (onFavoriteClick)="handleFavorites(item.recipe)"
+      [isFavorite]="isFavorite(item.recipe, favorites$ | async)"
+      [recipe]="item.recipe"
     ></app-card>
+    <p
+      *ngIf="
+        (recipes$ | async)?.hits.length === 0 &&
+        (recipesIsLoading$ | async) === false
+      "
+    >
+      Found zero results for: {{ query }}
+    </p>
     <app-modal
       (onClose)="closeModal()"
       [ngStyle]="isOpen ? { display: 'block' } : { display: 'none' }"
@@ -40,4 +51,4 @@
       </div>
     </app-modal>
   </div>
-</div>
+</app-container>

@@ -1,3 +1,4 @@
+import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { ShoppingListComponent } from './pages/shopping-list/shopping-list.component';
 import { ResultComponent } from './pages/result/result.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'shopping-list',
     component: ShoppingListComponent,
+  },
+  {
+    path: 'favorites',
+    component: FavoritesComponent,
   },
 ];
 

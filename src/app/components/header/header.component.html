@@ -1,12 +1,33 @@
 <div class="header-content">
-  <div class="search-wrapper">
-    <app-search (keyup.enter)="getSearchValue($event)"></app-search>
-  </div>
-  <nav class="nav-bar">
-    <ul>
-      <li *ngFor="let link of headerLinks">
-        <a [routerLink]="[link.to]">{{ link.title }}</a>
-      </li>
-    </ul>
-  </nav>
+  <app-container>
+    <div class="search-wrapper">
+      <app-search
+        (keyup.enter)="getSearchValue($event)"
+        (onMicrophoneClick)="openModal()"
+      ></app-search>
+    </div>
+    <nav class="nav-bar">
+      <ul>
+        <li *ngFor="let link of headerLinks">
+          <a [routerLink]="[link.to]">{{ link.title }}</a>
+        </li>
+      </ul>
+    </nav>
+    <app-modal
+      (onClose)="closeModal()"
+      [ngStyle]="isOpen ? { display: 'block' } : { display: 'none' }"
+    >
+      <div class="dialog-wrapper">
+        <p *ngIf="isRecording; else elseBlock">Recording...</p>
+        <ng-template #elseBlock>Press start for voice search</ng-template>
+        <div class="btn-wrapper">
+          <app-button
+            [label]="isRecording ? 'Stop' : 'Start'"
+            variant="secondary"
+            (onClick)="handleClick()"
+          ></app-button>
+        </div>
+      </div>
+    </app-modal>
+  </app-container>
 </div>

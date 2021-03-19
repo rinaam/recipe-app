@@ -22,6 +22,9 @@ import { ShoppingListComponent } from './pages/shopping-list/shopping-list.compo
 import { FloatingButtonComponent } from './components/floating-button/floating-button.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { SafePipe } from './pipes/safe.pipe';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ContainerComponent } from './components/container/container.component';
+import { FavoritesComponent } from './pages/favorites/favorites.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,8 @@ import { SafePipe } from './pipes/safe.pipe';
     FloatingButtonComponent,
     ModalComponent,
     SafePipe,
+    ContainerComponent,
+    FavoritesComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +54,7 @@ import { SafePipe } from './pipes/safe.pipe';
       maxAge: 25,
       logOnly: environment.production,
     }),
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

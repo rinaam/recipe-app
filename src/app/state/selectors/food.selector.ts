@@ -10,10 +10,15 @@ export const selectFoodSearch = createSelector(
   (state: FoodState) => state.data.recipe
 );
 
-export const selectShoppingListUpdate = createSelector(
+export const selectFoodSearchIsLoading = createSelector(
+  selectFoodState,
+  (state: FoodState) => state.loading
+);
+
+export const selectShoppingList = createSelector(
   selectFoodState,
   (state: FoodState) => {
-    return Object.values(state.data.shoppingList).some(Boolean);
+    return state.data.shoppingList.some((item) => item.checked);
   }
 );
 
@@ -26,3 +31,12 @@ export const selectRecipeForModal = (recipe: recipeT) =>
   createSelector(selectFoodState, (state: FoodState) =>
     state.data.recipe.hits.find((item) => item.recipe.url === recipe.url)
   );
+export const selectFavoriteForModal = (recipe: recipeT) =>
+  createSelector(selectFoodState, (state: FoodState) =>
+    state.data.favorite.find((item) => item.url === recipe.url)
+  );
+
+export const selectFavoritesListUpdate = createSelector(
+  selectFoodState,
+  (state: FoodState) => state.data.favorite
+);

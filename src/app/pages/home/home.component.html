@@ -1,11 +1,18 @@
 <div class="container">
-  <p *ngIf="isRecording; else elseBlock">Recording...</p>
-  <ng-template #elseBlock>Press start for voice search</ng-template>
-  <div class="btn-wrapper">
-    <app-button
-      [label]="isRecording ? 'Stop' : 'Start'"
-      variant="secondary"
-      (onClick)="handleClick()"
-    ></app-button>
-  </div>
+  <app-container>
+    <div>
+      <p class="title">+20,000</p>
+      <p class="subtitle">Cooking Recipes</p>
+    </div>
+    <div class="categories-wrapper">
+      <div
+        *ngFor="let category of mainCategories"
+        class="content"
+        (click)="handleClick(category.title)"
+      >
+        <img src="{{ category.imageUrl }}" />
+        <p class="category-title">{{ category.title }}</p>
+      </div>
+    </div>
+  </app-container>
 </div>

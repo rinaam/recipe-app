@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+import { faMicrophone } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-search',
@@ -7,5 +9,15 @@ import { Component } from '@angular/core';
 })
 export class SearchComponent {
   userInput: string = '';
-  constructor() {}
+  faMicrophone = faMicrophone;
+  @Output() onMicrophoneClick = new EventEmitter<any>();
+
+  onClickButton() {
+    this.onMicrophoneClick.emit();
+  }
+  constructor(private router: Router) {}
+
+  handleClick(): void {
+    this.router.navigate(['search', this.userInput]);
+  }
 }

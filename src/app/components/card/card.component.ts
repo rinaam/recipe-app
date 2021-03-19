@@ -1,10 +1,12 @@
 import { updateShoppingList } from './../../state/actions/food.action';
-import { selectShoppingListUpdate } from './../../state/selectors/food.selector';
+import { selectShoppingList } from './../../state/selectors/food.selector';
 import { Observable } from 'rxjs';
-import { ingredientT } from './../../services/food.service';
+import { ingredientT, recipeT } from './../../services/food.service';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Router } from '@angular/router';
+import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-card',
@@ -15,15 +17,19 @@ export class CardComponent {
   @Input() title: string = '';
   @Input() imageUrl: string = '';
   @Input() ingridients: ingredientT[] = [];
-  @Input() recipe: string = '';
+  @Input() recipe: recipeT;
   @Input() yield: number = 0;
   @Input() url: string = '';
   @Input() shareUrl: string = '';
+  @Input() isFavorite: boolean = false;
   @Output() onModalClick = new EventEmitter<boolean>();
+  @Output() onFavoriteClick = new EventEmitter<boolean>();
   showIngridients: boolean = false;
+  solidHeart = solidHeart;
+  regularHeart = regularHeart;
 
   showButton$: Observable<Boolean> = this.store.pipe(
-    select(selectShoppingListUpdate)
+    select(selectShoppingList)
   );
 
   constructor(private store: Store, private router: Router) {}
@@ -38,7 +44,11 @@ export class CardComponent {
 
   onChange(value: string, event: any): void {
     this.store.dispatch(
-      updateShoppingList({ value, checked: event.target.checked })
+      updateShoppingList({
+        ingredient: value,
+        checked: event.target.checked,
+        recipe: this.recipe,
+      })
     );
   }
 
@@ -47,5 +57,9 @@ export class CardComponent {
   }
   openModal(): void {
     this.onModalClick.emit();
+  }
+
+  saveFavorite(): void {
+    this.onFavoriteClick.emit();
   }
 }
