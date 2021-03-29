@@ -8,8 +8,6 @@ import { Component, Output, EventEmitter } from '@angular/core';
 export class ModalComponent {
   @Output() onClose = new EventEmitter<boolean>();
 
-  constructor() {}
-
   handleButton(): void {
     this.onClose.emit();
   }

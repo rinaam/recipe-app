@@ -56,11 +56,9 @@
           ></app-checkbox>
         </li>
       </ul>
-      <div class="btn-wrapper" *ngIf="showButton$ | async">
-        <app-floating-button
-          label="Add To Shopping List"
-          (onClick)="navigateToShoppingList()"
-        ></app-floating-button>
+      <div *ngIf="showToast">
+        <app-notification-list [itemArray]="selectedIngridients">
+        </app-notification-list>
       </div>
     </div>
   </div>

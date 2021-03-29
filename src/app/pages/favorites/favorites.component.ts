@@ -1,10 +1,9 @@
-import { recipeSearchHitT, recipeT } from './../../services/food.service';
+import { recipeT } from './../../services/food.service';
 import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { updateFavoritesList } from './../../state/actions/food.action';
 import {
-  selectRecipeForModal,
   selectFavoritesListUpdate,
   selectFavoriteForModal,
 } from './../../state/selectors/food.selector';

@@ -30,6 +30,7 @@ export class ResultComponent {
   favorites$: Observable<recipeT[]> = this.store.pipe(
     select(selectFavoritesListUpdate)
   );
+
   isOpen: boolean = false;
 
   selectedRecipe$: Observable<recipeSearchHitT>;

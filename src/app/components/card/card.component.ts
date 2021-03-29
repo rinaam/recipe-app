@@ -1,12 +1,17 @@
-import { updateShoppingList } from './../../state/actions/food.action';
-import { selectShoppingList } from './../../state/selectors/food.selector';
-import { Observable } from 'rxjs';
+import {
+  updateShoppingList,
+  deleteMarkedItem,
+} from './../../state/actions/food.action';
 import { ingredientT, recipeT } from './../../services/food.service';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
+
+export type ingridientNotificationT = {
+  message: string;
+  state: 'removed from shopping list' | 'added to shopping list';
+};
 
 @Component({
   selector: 'app-card',
@@ -27,12 +32,11 @@ export class CardComponent {
   showIngridients: boolean = false;
   solidHeart = solidHeart;
   regularHeart = regularHeart;
+  selectedIngridients: ingridientNotificationT[] = [];
+  showToast: boolean = false;
+  removeFirstElementInterval: any;
 
-  showButton$: Observable<Boolean> = this.store.pipe(
-    select(selectShoppingList)
-  );
-
-  constructor(private store: Store, private router: Router) {}
+  constructor(private store: Store) {}
 
   navigateToRecipe(): void {
     window.open(this.url, '_blank');
@@ -50,16 +54,39 @@ export class CardComponent {
         recipe: this.recipe,
       })
     );
+    const isSelected = event.target.checked;
+
+    this.selectedIngridients.push({
+      message: value,
+      state: isSelected
+        ? 'added to shopping list'
+        : 'removed from shopping list',
+    });
+
+    if (event.target.checked === false) {
+      this.store.dispatch(deleteMarkedItem({ ingridient: value }));
+    }
+    this.showToast = true;
+    this.handleNotifications();
   }
 
-  navigateToShoppingList(): void {
-    this.router.navigate(['shopping-list']);
-  }
   openModal(): void {
     this.onModalClick.emit();
   }
 
   saveFavorite(): void {
     this.onFavoriteClick.emit();
+  }
+
+  handleNotifications(): void {
+    if (this.removeFirstElementInterval) {
+      clearInterval(this.removeFirstElementInterval);
+    }
+    this.removeFirstElementInterval = setInterval(() => {
+      this.selectedIngridients.shift();
+      if (this.selectedIngridients.length === 0) {
+        clearInterval(this.removeFirstElementInterval);
+      }
+    }, 1000);
   }
 }

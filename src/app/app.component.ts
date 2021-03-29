@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-
+import { headerLinks } from './utils/constants';
 export type headerLinksT = {
-  to: string;
   title: string;
+  to: string;
 };
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,18 +11,5 @@ export type headerLinksT = {
 })
 export class AppComponent {
   title = 'food-app';
-  headerLinks = [
-    {
-      to: 'home',
-      title: 'Home',
-    },
-    {
-      to: 'shopping-list',
-      title: 'Shopping List',
-    },
-    {
-      to: 'favorites',
-      title: 'Favorites',
-    },
-  ];
+  headerLinks = headerLinks;
 }

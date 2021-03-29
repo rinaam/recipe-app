@@ -19,12 +19,12 @@ import { ButtonComponent } from './components/button/button.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { ShoppingListComponent } from './pages/shopping-list/shopping-list.component';
-import { FloatingButtonComponent } from './components/floating-button/floating-button.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { SafePipe } from './pipes/safe.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ContainerComponent } from './components/container/container.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
+import { NotificationListComponent } from './components/notification-list/notification-list.component';
 
 @NgModule({
   declarations: [
@@ -37,11 +37,11 @@ import { FavoritesComponent } from './pages/favorites/favorites.component';
     CheckboxComponent,
     ButtonComponent,
     ShoppingListComponent,
-    FloatingButtonComponent,
     ModalComponent,
     SafePipe,
     ContainerComponent,
     FavoritesComponent,
+    NotificationListComponent,
   ],
   imports: [
     BrowserModule,

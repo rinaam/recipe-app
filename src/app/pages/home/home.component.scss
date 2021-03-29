@@ -2,11 +2,13 @@
 
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
-  height: calc(100vh - 100px);
-  background-image: url("~src/assets/images/banner_1.jpg");
-  background-size: cover;
+  height: calc(100vh - 133px);
+  background: {
+    image: url("~src/assets/images/banner_1.jpg");
+    size: cover;
+  }
   position: relative;
   .title {
     font: {
@@ -35,12 +37,16 @@
     flex-wrap: wrap;
     justify-content: center;
     position: absolute;
-    top: calc(100% - 108px);
+    top: 100px;
+    bottom: unset;
     left: 50%;
     transform: translate(-50%, 0%);
     width: 100%;
     box-sizing: border-box;
-
+    @include breakpoint(mediumDevices) {
+      bottom: 0;
+      top: unset;
+    }
     .content {
       background-color: #ff0000;
       margin: 8px;

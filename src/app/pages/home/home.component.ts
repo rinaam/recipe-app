@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { mainCategories } from '../../utils/constants';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

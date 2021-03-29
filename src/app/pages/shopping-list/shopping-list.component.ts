@@ -1,5 +1,5 @@
 import { shoppingListT } from './../../state/reducers/food.reducer';
-import { recipeSearchHitT, recipeT } from './../../services/food.service';
+import { recipeT } from './../../services/food.service';
 import { selectShoppingListKey } from './../../state/selectors/food.selector';
 import { deleteMarkedItem } from '../../state/actions/food.action';
 import { Observable } from 'rxjs';

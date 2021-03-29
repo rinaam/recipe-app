@@ -134,6 +134,8 @@ export type recipeT = {
   totalDaily: totalDailyT;
   digest: digestT[];
   isFavorite?: boolean;
+  dishType: string[];
+  mealType: string[];
 };
 
 @Injectable({

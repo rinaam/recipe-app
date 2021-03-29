@@ -86,7 +86,7 @@ const reducer = createReducer(
       };
     }
   ),
-  on(FoodActions.deleteMarkedItem, (state, { ingridient, recipe }) => {
+  on(FoodActions.deleteMarkedItem, (state, { ingridient }) => {
     const filteredItems = state.data.shoppingList.filter(
       (item) => item.ingredient !== ingridient
     );

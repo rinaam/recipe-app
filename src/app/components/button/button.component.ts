@@ -9,7 +9,6 @@ export class ButtonComponent {
   @Input() label: string = '';
   @Input() variant: 'primary' | 'secondary' = 'primary';
   @Output() onClick = new EventEmitter<any>();
-  constructor() {}
 
   onClickButton(event) {
     this.onClick.emit(event);

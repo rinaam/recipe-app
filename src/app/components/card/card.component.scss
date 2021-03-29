@@ -103,10 +103,12 @@
         padding: 4px;
         cursor: pointer;
       }
+      .btn-wrapper {
+        margin-bottom: 4px;
+        @include breakpoint(mediumDevices) {
+          margin-bottom: 0px;
+        }
+      }
     }
   }
-}
-.btn-wrapper {
-  width: 120px;
-  margin: 4px 0px;
 }

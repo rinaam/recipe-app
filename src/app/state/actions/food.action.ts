@@ -25,7 +25,7 @@ export const updateShoppingList = createAction(
 
 export const deleteMarkedItem = createAction(
   '[Deletion] Delete Marked Item',
-  props<{ ingridient: string; recipe: recipeT }>()
+  props<{ ingridient: string; recipe?: recipeT }>()
 );
 
 export const updateFavoritesList = createAction(

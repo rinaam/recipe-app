@@ -24,3 +24,18 @@ export const mainCategories = [
     title: 'Pizza',
   },
 ];
+
+export const headerLinks = [
+  {
+    to: 'home',
+    title: 'Home',
+  },
+  {
+    to: 'shopping-list',
+    title: 'Shopping List',
+  },
+  {
+    to: 'favorites',
+    title: 'Favorites',
+  },
+];
